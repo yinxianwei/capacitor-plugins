@@ -1,4 +1,4 @@
-package com.capacitorjs.plugins;
+package com.capacitorjs.plugins.navbar;
 
 import android.util.Log;
 

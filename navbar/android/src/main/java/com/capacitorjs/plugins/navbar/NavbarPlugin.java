@@ -1,5 +1,4 @@
-package com.capacitorjs.plugins;
-
+package com.capacitorjs.plugins.navbar;
 
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
