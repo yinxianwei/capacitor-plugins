@@ -9,23 +9,76 @@ npm install @yinxianwei/wechat
 npx cap sync
 ```
 
+### iOS
+
+> [微信文档](https://developers.weixin.qq.com/doc/oplatform/Mobile_App/Access_Guide/iOS.html#_1-%E7%A1%AE%E8%AE%A4%E5%BE%AE%E4%BF%A1%E7%9A%84Universal-Links%E6%AD%A3%E5%B8%B8)
+> 1. 根据 [苹果文档](https://developer.apple.com/documentation/xcode/allowing-apps-and-websites-to-link-to-your-content) 配置你应用的Universal Links
+> 2. 在 Xcode 中，选择你的工程设置项，选中“TARGETS”一栏，在“info”标签栏的“URL type“添加“URL scheme”为你所注册的应用程序 id
+> 3. 在Xcode中，选择你的工程设置项，选中“TARGETS”一栏，在 “info”标签栏的“LSApplicationQueriesSchemes“添加weixin、weixinULAPI、weixinURLParamsAPI（如下图所示）。
+
+```swift
+// AppDelegate.swift
+
+func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+    // Called when the app was launched with an activity, including Universal Links.
+    // Feel free to add additional processing here, but if you want the App API to support
+    // tracking app url opens, make sure to keep this call
+    return WXApi.handleOpenUniversalLink(userActivity, delegate: self)
+}
+
+func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
+    return WXApi.handleOpen(url, delegate: self);
+}
+func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+    return WXApi.handleOpen(url, delegate: self);
+}
+func onResp(_ resp: BaseResp) {
+    WechatPlugin.onResp(resp)
+}
+```
+
+### Android
+
+```xml
+<!-- AndroidManifest.xml -->
+
+<manifest>
+...
+    <queries>
+        <package android:name="com.tencent.mm" />
+    </queries>
+</manifest>
+```
+
 ## API
 
 <docgen-index>
 
-* [`isInstalled()`](#isinstalled)
-* [`registerApp()`](#registerapp)
-* [`shareImageMessage(...)`](#shareimagemessage)
-* [`shareMiniProgramMessage(...)`](#shareminiprogrammessage)
-* [`shareTextMessage(...)`](#sharetextmessage)
-* [`shareWebPageMessage(...)`](#sharewebpagemessage)
-* [`shareVideoMessage(...)`](#sharevideomessage)
-* [`shareMusicVideoMessage(...)`](#sharemusicvideomessage)
-* [`auth(...)`](#auth)
-* [`sendPaymentRequest(...)`](#sendpaymentrequest)
-* [`openMiniProgram(...)`](#openminiprogram)
-* [Interfaces](#interfaces)
-* [Enums](#enums)
+- [@yinxianwei/wechat](#yinxianweiwechat)
+  - [Install](#install)
+    - [iOS](#ios)
+    - [Android](#android)
+  - [API](#api)
+    - [isInstalled()](#isinstalled)
+    - [registerApp()](#registerapp)
+    - [shareImageMessage(...)](#shareimagemessage)
+    - [shareMiniProgramMessage(...)](#shareminiprogrammessage)
+    - [shareTextMessage(...)](#sharetextmessage)
+    - [shareWebPageMessage(...)](#sharewebpagemessage)
+    - [shareVideoMessage(...)](#sharevideomessage)
+    - [shareMusicVideoMessage(...)](#sharemusicvideomessage)
+    - [auth(...)](#auth)
+    - [sendPaymentRequest(...)](#sendpaymentrequest)
+    - [openMiniProgram(...)](#openminiprogram)
+    - [Interfaces](#interfaces)
+      - [ShareImage](#shareimage)
+      - [ShareMiniProgram](#shareminiprogram)
+      - [ShareText](#sharetext)
+      - [ShareWeb](#shareweb)
+      - [ShareVideo](#sharevideo)
+      - [ShareMusicVideo](#sharemusicvideo)
+    - [Enums](#enums)
+      - [MiniprogramType](#miniprogramtype)
 
 </docgen-index>
 
