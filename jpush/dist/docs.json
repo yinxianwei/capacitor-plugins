@@ -1,0 +1,88 @@
+{
+  "api": {
+    "name": "JPushPlugin",
+    "slug": "jpushplugin",
+    "docs": "",
+    "tags": [],
+    "methods": [
+      {
+        "name": "init",
+        "signature": "() => Promise<{ data: 'notDetermined' | 'denied' | 'authorized' | 'provisional'; }>",
+        "parameters": [],
+        "returns": "Promise<{ data: 'notDetermined' | 'denied' | 'authorized' | 'provisional'; }>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "init"
+      },
+      {
+        "name": "getRegistrationID",
+        "signature": "() => Promise<{ data: { code?: string; registrationID: string; }; }>",
+        "parameters": [],
+        "returns": "Promise<{ data: { code?: string | undefined; registrationID: string; }; }>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "getregistrationid"
+      },
+      {
+        "name": "setTags",
+        "signature": "(options: { sequence: number; tags: string[]; }) => Promise<{ data: { iResCode: number; iTags: string[]; seq: number; }; }>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ sequence: number; tags: string[]; }"
+          }
+        ],
+        "returns": "Promise<{ data: { iResCode: number; iTags: string[]; seq: number; }; }>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "settags"
+      },
+      {
+        "name": "setAlias",
+        "signature": "(options: { sequence: number; alias: string; }) => Promise<{ data: { iResCode: number; iAlias: string; seq: number; }; }>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ sequence: number; alias: string; }"
+          }
+        ],
+        "returns": "Promise<{ data: { iResCode: number; iAlias: string; seq: number; }; }>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "setalias"
+      },
+      {
+        "name": "addListener",
+        "signature": "(name: 'openNotification', callback: { (): { badge: number; body: string; subtitle: string; title: string; extras: string; }; }) => void",
+        "parameters": [
+          {
+            "name": "name",
+            "docs": "",
+            "type": "'openNotification'"
+          },
+          {
+            "name": "callback",
+            "docs": "",
+            "type": "() => { badge: number; body: string; subtitle: string; title: string; extras: string; }"
+          }
+        ],
+        "returns": "void",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "addlisteneropennotification-"
+      }
+    ],
+    "properties": []
+  },
+  "interfaces": [],
+  "enums": [],
+  "typeAliases": [],
+  "pluginConfigs": []
+}

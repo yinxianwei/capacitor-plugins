@@ -1,0 +1,111 @@
+{
+  "api": {
+    "name": "NavbarPlugin",
+    "slug": "navbarplugin",
+    "docs": "",
+    "tags": [],
+    "methods": [
+      {
+        "name": "setTitle",
+        "signature": "(options: { value: string; }) => Promise<boolean>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ value: string; }"
+          }
+        ],
+        "returns": "Promise<boolean>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "settitle"
+      },
+      {
+        "name": "setLeftIcon",
+        "signature": "(options: { normal: string; }) => Promise<boolean>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ normal: string; }"
+          }
+        ],
+        "returns": "Promise<boolean>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "setlefticon"
+      },
+      {
+        "name": "setLeftVisibility",
+        "signature": "(options: { value: boolean; }) => Promise<boolean>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ value: boolean; }"
+          }
+        ],
+        "returns": "Promise<boolean>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "setleftvisibility"
+      },
+      {
+        "name": "setRightIcon",
+        "signature": "(options: { normal: string; }) => Promise<boolean>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ normal: string; }"
+          }
+        ],
+        "returns": "Promise<boolean>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "setrighticon"
+      },
+      {
+        "name": "setRightVisibility",
+        "signature": "(options: { value: boolean; }) => Promise<boolean>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ value: boolean; }"
+          }
+        ],
+        "returns": "Promise<boolean>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "setrightvisibility"
+      },
+      {
+        "name": "allowsBackForwardNavigationGestures",
+        "signature": "(options: { value: boolean; }) => Promise<boolean>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ value: boolean; }"
+          }
+        ],
+        "returns": "Promise<boolean>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "allowsbackforwardnavigationgestures"
+      }
+    ],
+    "properties": []
+  },
+  "interfaces": [],
+  "enums": [],
+  "typeAliases": [],
+  "pluginConfigs": []
+}
