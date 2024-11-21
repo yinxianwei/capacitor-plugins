@@ -25,6 +25,9 @@ var capacitorNavbar = (function (exports, core) {
         async allowsBackForwardNavigationGestures() {
             return true;
         }
+        async exitApp() {
+            return true;
+        }
     }
 
     var web = /*#__PURE__*/Object.freeze({

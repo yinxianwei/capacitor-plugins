@@ -17,4 +17,5 @@ export interface NavbarPlugin {
     allowsBackForwardNavigationGestures(options: {
         value: boolean;
     }): Promise<boolean>;
+    exitApp(): Promise<boolean>;
 }

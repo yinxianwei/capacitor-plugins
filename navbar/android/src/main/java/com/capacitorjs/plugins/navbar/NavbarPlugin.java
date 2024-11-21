@@ -148,4 +148,8 @@ public class NavbarPlugin extends Plugin {
     public void allowsBackForwardNavigationGestures(PluginCall call) {
         call.resolve();
     }
+    @PluginMethod
+    public void exitApp(PluginCall call) {
+        System.exit(0);
+    }
 }

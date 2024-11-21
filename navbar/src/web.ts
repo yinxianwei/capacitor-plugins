@@ -22,4 +22,7 @@ export class NavbarWeb extends WebPlugin implements NavbarPlugin {
   async allowsBackForwardNavigationGestures(): Promise<boolean> {
     return true;
   }
+  async exitApp(): Promise<boolean> {
+    return true;
+  }
 }

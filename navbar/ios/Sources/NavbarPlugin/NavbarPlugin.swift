@@ -18,6 +18,7 @@ public class NavbarPlugin: CAPPlugin, CAPBridgedPlugin {
         CAPPluginMethod(name: "setRightVisibility", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "setRightIcon", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "allowsBackForwardNavigationGestures", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "exitApp", returnType: CAPPluginReturnPromise),
     ]
     private let implementation = Navbar()
     public let navbar = UIView(frame: .zero)
@@ -130,6 +131,9 @@ public class NavbarPlugin: CAPPlugin, CAPBridgedPlugin {
             self.webView?.allowsBackForwardNavigationGestures = value
             call.resolve()
         }
+    }
+    @objc func exitApp(_ call: CAPPluginCall) {
+        exit(0)
     }
     @objc func leftClick() {
         webView?.goBack()

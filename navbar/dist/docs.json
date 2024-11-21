@@ -100,6 +100,16 @@
         "docs": "",
         "complexTypes": [],
         "slug": "allowsbackforwardnavigationgestures"
+      },
+      {
+        "name": "exitApp",
+        "signature": "() => Promise<boolean>",
+        "parameters": [],
+        "returns": "Promise<boolean>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "exitapp"
       }
     ],
     "properties": []

@@ -26,6 +26,9 @@ class NavbarWeb extends core.WebPlugin {
     async allowsBackForwardNavigationGestures() {
         return true;
     }
+    async exitApp() {
+        return true;
+    }
 }
 
 var web = /*#__PURE__*/Object.freeze({

@@ -9,4 +9,5 @@ export declare class NavbarWeb extends WebPlugin implements NavbarPlugin {
     setRightIcon(): Promise<boolean>;
     setRightVisibility(): Promise<boolean>;
     allowsBackForwardNavigationGestures(): Promise<boolean>;
+    exitApp(): Promise<boolean>;
 }

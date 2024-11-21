@@ -19,6 +19,7 @@ npx cap sync
 * [`setRightIcon(...)`](#setrighticon)
 * [`setRightVisibility(...)`](#setrightvisibility)
 * [`allowsBackForwardNavigationGestures(...)`](#allowsbackforwardnavigationgestures)
+* [`exitApp()`](#exitapp)
 
 </docgen-index>
 
@@ -109,6 +110,17 @@ allowsBackForwardNavigationGestures(options: { value: boolean; }) => Promise<boo
 | Param         | Type                             |
 | ------------- | -------------------------------- |
 | **`options`** | <code>{ value: boolean; }</code> |
+
+**Returns:** <code>Promise&lt;boolean&gt;</code>
+
+--------------------
+
+
+### exitApp()
+
+```typescript
+exitApp() => Promise<boolean>
+```
 
 **Returns:** <code>Promise&lt;boolean&gt;</code>
 

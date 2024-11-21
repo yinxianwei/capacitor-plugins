@@ -19,5 +19,8 @@ export class NavbarWeb extends WebPlugin {
     async allowsBackForwardNavigationGestures() {
         return true;
     }
+    async exitApp() {
+        return true;
+    }
 }
 //# sourceMappingURL=web.js.map
