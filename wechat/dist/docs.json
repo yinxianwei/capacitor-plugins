@@ -1,0 +1,448 @@
+{
+  "api": {
+    "name": "WechatPlugin",
+    "slug": "wechatplugin",
+    "docs": "",
+    "tags": [],
+    "methods": [
+      {
+        "name": "isInstalled",
+        "signature": "() => Promise<{ data: boolean; }>",
+        "parameters": [],
+        "returns": "Promise<{ data: boolean; }>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "isinstalled"
+      },
+      {
+        "name": "registerApp",
+        "signature": "() => Promise<{ data: boolean; }>",
+        "parameters": [],
+        "returns": "Promise<{ data: boolean; }>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "registerapp"
+      },
+      {
+        "name": "shareImageMessage",
+        "signature": "(options: ShareImage) => Promise<{ data: boolean; }>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "ShareImage"
+          }
+        ],
+        "returns": "Promise<{ data: boolean; }>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [
+          "ShareImage"
+        ],
+        "slug": "shareimagemessage"
+      },
+      {
+        "name": "shareMiniProgramMessage",
+        "signature": "(options: ShareMiniProgram) => Promise<{ data: boolean; }>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "ShareMiniProgram"
+          }
+        ],
+        "returns": "Promise<{ data: boolean; }>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [
+          "ShareMiniProgram"
+        ],
+        "slug": "shareminiprogrammessage"
+      },
+      {
+        "name": "shareTextMessage",
+        "signature": "(options: ShareText) => Promise<{ data: boolean; }>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "ShareText"
+          }
+        ],
+        "returns": "Promise<{ data: boolean; }>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [
+          "ShareText"
+        ],
+        "slug": "sharetextmessage"
+      },
+      {
+        "name": "shareWebPageMessage",
+        "signature": "(options: ShareWeb) => Promise<{ data: boolean; }>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "ShareWeb"
+          }
+        ],
+        "returns": "Promise<{ data: boolean; }>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [
+          "ShareWeb"
+        ],
+        "slug": "sharewebpagemessage"
+      },
+      {
+        "name": "shareVideoMessage",
+        "signature": "(options: ShareVideo) => Promise<{ data: boolean; }>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "ShareVideo"
+          }
+        ],
+        "returns": "Promise<{ data: boolean; }>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [
+          "ShareVideo"
+        ],
+        "slug": "sharevideomessage"
+      },
+      {
+        "name": "shareMusicVideoMessage",
+        "signature": "(options: ShareMusicVideo) => Promise<{ data: boolean; }>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "ShareMusicVideo"
+          }
+        ],
+        "returns": "Promise<{ data: boolean; }>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [
+          "ShareMusicVideo"
+        ],
+        "slug": "sharemusicvideomessage"
+      },
+      {
+        "name": "auth",
+        "signature": "(options: { scope: string; state: string; }) => Promise<{ data: { appid: string; scope: string; state: string; }; }>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ scope: string; state: string; }"
+          }
+        ],
+        "returns": "Promise<{ data: { appid: string; scope: string; state: string; }; }>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "auth"
+      },
+      {
+        "name": "sendPaymentRequest",
+        "signature": "(options: object) => Promise<{ data: boolean; }>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "object"
+          }
+        ],
+        "returns": "Promise<{ data: boolean; }>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "sendpaymentrequest"
+      },
+      {
+        "name": "openMiniProgram",
+        "signature": "(options: { userName: string; path: string; miniprogramType: string; }) => Promise<{ data: boolean; }>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ userName: string; path: string; miniprogramType: string; }"
+          }
+        ],
+        "returns": "Promise<{ data: boolean; }>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "openminiprogram"
+      }
+    ],
+    "properties": []
+  },
+  "interfaces": [
+    {
+      "name": "ShareImage",
+      "slug": "shareimage",
+      "docs": "",
+      "tags": [],
+      "methods": [],
+      "properties": [
+        {
+          "name": "imagePath",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "thumbPath",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "entranceMiniProgramUsername",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "entranceMiniProgramPath",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "ShareMiniProgram",
+      "slug": "shareminiprogram",
+      "docs": "",
+      "tags": [],
+      "methods": [],
+      "properties": [
+        {
+          "name": "webpageUrl",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "userName",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "path",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "hdImageData",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "withShareTicket",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "boolean"
+        },
+        {
+          "name": "miniprogramType",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [
+            "MiniprogramType"
+          ],
+          "type": "MiniprogramType"
+        }
+      ]
+    },
+    {
+      "name": "ShareText",
+      "slug": "sharetext",
+      "docs": "",
+      "tags": [],
+      "methods": [],
+      "properties": [
+        {
+          "name": "text",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "ShareWeb",
+      "slug": "shareweb",
+      "docs": "",
+      "tags": [],
+      "methods": [],
+      "properties": [
+        {
+          "name": "webpageUrl",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "ShareVideo",
+      "slug": "sharevideo",
+      "docs": "",
+      "tags": [],
+      "methods": [],
+      "properties": [
+        {
+          "name": "videoUrl",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "videoLowBandUrl",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "ShareMusicVideo",
+      "slug": "sharemusicvideo",
+      "docs": "",
+      "tags": [],
+      "methods": [],
+      "properties": [
+        {
+          "name": "musicUrl",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "musicDataUrl",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "singerName",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "duration",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "number"
+        },
+        {
+          "name": "songLyric",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "hdAlbumThumbFilePath",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "albumName",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "musicGenre",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "issueDate",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "number"
+        },
+        {
+          "name": "identification",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "hdAlbumThumbFileHash",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string"
+        }
+      ]
+    }
+  ],
+  "enums": [
+    {
+      "name": "MiniprogramType",
+      "slug": "miniprogramtype",
+      "members": [
+        {
+          "name": "RELEASE",
+          "value": "0",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "TEST",
+          "value": "1",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "PREVIEW",
+          "value": "2",
+          "tags": [],
+          "docs": ""
+        }
+      ]
+    }
+  ],
+  "typeAliases": [],
+  "pluginConfigs": []
+}

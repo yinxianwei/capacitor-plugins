@@ -1,0 +1,15 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application>
+        <activity android:name=".wxapi.WXEntryActivity"
+                  android:label="WXEntryActivity"
+                  android:theme="@android:style/Theme.Translucent.NoTitleBar"
+                  android:exported="true"
+                  android:taskAffinity="${applicationId}"
+                  android:launchMode="singleTask">
+        </activity>
+
+        <activity-alias android:name="${applicationId}.wxapi.WXEntryActivity"
+                        android:exported="true"
+                        android:targetActivity=".wxapi.WXEntryActivity" />
+    </application>
+</manifest>
