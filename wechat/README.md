@@ -9,6 +9,21 @@ npm install @yinxianwei/wechat
 npx cap sync
 ```
 
+### Config
+
+```json
+ capacitor.config.json
+{
+    "plugins": {
+        ...
+        "Wechat": {
+            "mchid": "",
+            "appId": "",
+            "universalLink": ""
+        }
+    }
+}
+```
 ### iOS
 
 > [微信文档](https://developers.weixin.qq.com/doc/oplatform/Mobile_App/Access_Guide/iOS.html#_1-%E7%A1%AE%E8%AE%A4%E5%BE%AE%E4%BF%A1%E7%9A%84Universal-Links%E6%AD%A3%E5%B8%B8)
@@ -56,6 +71,7 @@ func onResp(_ resp: BaseResp) {
 
 - [@yinxianwei/wechat](#yinxianweiwechat)
   - [Install](#install)
+    - [Config](#config)
     - [iOS](#ios)
     - [Android](#android)
   - [API](#api)
