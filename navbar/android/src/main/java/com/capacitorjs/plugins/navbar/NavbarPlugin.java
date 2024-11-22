@@ -32,56 +32,63 @@ public class NavbarPlugin extends Plugin {
     private ImageButton rightBtn;
     int _navigation_bar_height = 44;
 
- @Override
+
+    @Override
     public void load() {
         super.load();
-        FrameLayout content = (FrameLayout)this.getActivity().findViewById(android.R.id.content);
-        _navigation_bar_height = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 44, content.getResources().getDisplayMetrics());
-
-        WebView webView = this.bridge.getWebView();
-        ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) webView.getLayoutParams();
-        params.setMargins(0, _navigation_bar_height, 0, 0);
-        webView.setLayoutParams(params);
-
-        LinearLayout navbar = new LinearLayout(this.getContext());
-        navbar.setOrientation(LinearLayout.HORIZONTAL);
-        navbar.setBackgroundColor(Color.WHITE);
-        FrameLayout.LayoutParams containerParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, _navigation_bar_height);
-        navbar.setLayoutParams(containerParams);
-
         leftBtn = new ImageButton(this.getContext());
-        leftBtn.setBackgroundColor(Color.TRANSPARENT);
-        leftBtn.setLayoutParams(new LinearLayout.LayoutParams(_navigation_bar_height, LinearLayout.LayoutParams.MATCH_PARENT));
-        leftBtn.setVisibility(View.INVISIBLE);
-        leftBtn.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v) {
-                if (webView.canGoBack()) {
-                    webView.goBack();
-                }
-            }
-        });
-
         titleLabel = new TextView(this.getContext());
-        titleLabel.setBackgroundColor(Color.WHITE);
-        titleLabel.setTextColor(Color.BLACK);
-        titleLabel.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1));
-        titleLabel.setGravity(Gravity.CENTER);
-        titleLabel.setSingleLine(true);
-        titleLabel.setEllipsize(TextUtils.TruncateAt.END);
-
         rightBtn = new ImageButton(this.getContext());
-        rightBtn.setBackgroundColor(Color.TRANSPARENT);
-        rightBtn.setLayoutParams(new LinearLayout.LayoutParams(_navigation_bar_height, LinearLayout.LayoutParams.MATCH_PARENT));
-        rightBtn.setVisibility(View.INVISIBLE);
-        rightBtn.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v) {
-                notifyListeners("onRightClick", null);
-            }
+    }
+    @PluginMethod
+    public void setup(PluginCall call) {
+        this.getActivity().runOnUiThread(() -> {
+            FrameLayout content = (FrameLayout) this.getActivity().findViewById(android.R.id.content);
+            _navigation_bar_height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 44, content.getResources().getDisplayMetrics());
+
+            WebView webView = this.bridge.getWebView();
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) webView.getLayoutParams();
+            params.setMargins(0, _navigation_bar_height, 0, 0);
+            webView.setLayoutParams(params);
+
+            LinearLayout navbar = new LinearLayout(this.getContext());
+            navbar.setOrientation(LinearLayout.HORIZONTAL);
+            navbar.setBackgroundColor(Color.WHITE);
+            FrameLayout.LayoutParams containerParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, _navigation_bar_height);
+            navbar.setLayoutParams(containerParams);
+
+            leftBtn.setBackgroundColor(Color.TRANSPARENT);
+            leftBtn.setLayoutParams(new LinearLayout.LayoutParams(_navigation_bar_height, LinearLayout.LayoutParams.MATCH_PARENT));
+            leftBtn.setVisibility(View.INVISIBLE);
+            leftBtn.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    if (webView.canGoBack()) {
+                        webView.goBack();
+                    }
+                }
+            });
+
+            titleLabel.setBackgroundColor(Color.WHITE);
+            titleLabel.setTextColor(Color.BLACK);
+            titleLabel.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1));
+            titleLabel.setGravity(Gravity.CENTER);
+            titleLabel.setSingleLine(true);
+            titleLabel.setEllipsize(TextUtils.TruncateAt.END);
+
+            rightBtn.setBackgroundColor(Color.TRANSPARENT);
+            rightBtn.setLayoutParams(new LinearLayout.LayoutParams(_navigation_bar_height, LinearLayout.LayoutParams.MATCH_PARENT));
+            rightBtn.setVisibility(View.INVISIBLE);
+            rightBtn.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    notifyListeners("onRightClick", null);
+                }
+            });
+            navbar.addView(leftBtn);
+            navbar.addView(titleLabel);
+            navbar.addView(rightBtn);
+            content.addView(navbar);
+            call.resolve();
         });
-        navbar.addView(leftBtn);
-        navbar.addView(titleLabel);
-        navbar.addView(rightBtn);
-        content.addView(navbar);
     }
 
     @PluginMethod
@@ -89,8 +96,8 @@ public class NavbarPlugin extends Plugin {
         String value = call.getString("value");
         this.getActivity().runOnUiThread(() -> {
             this.titleLabel.setText(value);
+            call.resolve();
         });
-        call.resolve();
     }
     @PluginMethod
     public void setLeftIcon(PluginCall call) {
@@ -140,8 +147,8 @@ public class NavbarPlugin extends Plugin {
         Boolean value = call.getBoolean("value");
         this.getActivity().runOnUiThread(() -> {
             this.rightBtn.setVisibility(value ? View.VISIBLE : View.INVISIBLE);
+            call.resolve();
         });
-        call.resolve();
     }
     
     @PluginMethod
@@ -151,5 +158,6 @@ public class NavbarPlugin extends Plugin {
     @PluginMethod
     public void exitApp(PluginCall call) {
         System.exit(0);
+        call.resolve();
     }
 }

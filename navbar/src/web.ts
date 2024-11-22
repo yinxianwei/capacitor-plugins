@@ -3,6 +3,9 @@ import { WebPlugin } from '@capacitor/core';
 import type { NavbarPlugin } from './definitions';
 
 export class NavbarWeb extends WebPlugin implements NavbarPlugin {
+  async setup(): Promise<boolean>{
+    return true;
+  }
   async setTitle(options: { value: string }): Promise<boolean> {
     document.title = options.value;
     return true;

@@ -12,6 +12,7 @@ public class NavbarPlugin: CAPPlugin, CAPBridgedPlugin {
     public let identifier = "NavbarPlugin"
     public let jsName = "Navbar"
     public let pluginMethods: [CAPPluginMethod] = [
+        CAPPluginMethod(name: "setup", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "setTitle", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "setLeftVisibility", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "setLeftIcon", returnType: CAPPluginReturnPromise),
@@ -26,65 +27,67 @@ public class NavbarPlugin: CAPPlugin, CAPBridgedPlugin {
     public let leftBtn = UIButton()
     public let rightBtn = UIButton()
 
-    override public func load() {
-        super.load()
-        
-        let viewController = bridge?.viewController as? CAPBridgeViewController
-        
-        webView?.scrollView.bounces = true
-        webView?.scrollView.backgroundColor = .white
-        webView?.translatesAutoresizingMaskIntoConstraints = false
+    @objc func setup(_ call: CAPPluginCall) {
+        DispatchQueue.main.async {
+            let viewController = self.bridge?.viewController as? CAPBridgeViewController
+            
+            self.webView?.scrollView.bounces = true
+            self.webView?.scrollView.backgroundColor = .white
+            self.webView?.translatesAutoresizingMaskIntoConstraints = false
 
-        navbar.backgroundColor = .white
-        navbar.translatesAutoresizingMaskIntoConstraints = false
-        
-        leftBtn.translatesAutoresizingMaskIntoConstraints = false;
-        leftBtn.addTarget(self, action: #selector(leftClick), for: UIControl.Event.touchUpInside);
-        leftBtn.isHidden = true;
-        navbar.addSubview(leftBtn)
-        
-        rightBtn.translatesAutoresizingMaskIntoConstraints = false;
-        rightBtn.addTarget(self, action: #selector(rightClick), for: UIControl.Event.touchUpInside);
-        rightBtn.isHidden = true;
-        navbar.addSubview(rightBtn)
+            self.navbar.backgroundColor = .white
+            self.navbar.translatesAutoresizingMaskIntoConstraints = false
+            
+            self.leftBtn.translatesAutoresizingMaskIntoConstraints = false;
+            self.leftBtn.addTarget(self, action: #selector(self.leftClick), for: UIControl.Event.touchUpInside);
+            self.leftBtn.isHidden = true;
+            self.navbar.addSubview(self.leftBtn)
+            
+            self.rightBtn.translatesAutoresizingMaskIntoConstraints = false;
+            self.rightBtn.addTarget(self, action: #selector(self.rightClick), for: UIControl.Event.touchUpInside);
+            self.rightBtn.isHidden = true;
+            self.navbar.addSubview(self.rightBtn)
 
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false;
-        titleLabel.textAlignment = .center
-        titleLabel.textColor = .black
-        navbar.addSubview(titleLabel)
-        
-        let scene: UIWindowScene? = UIApplication.shared.connectedScenes.first as? UIWindowScene
-        _navigation_bar_height = (scene?.statusBarManager?.statusBarFrame.height ?? 0) + 44
-        let view = viewController!.view!
-        view.addSubview(self.navbar)
-        
-        NSLayoutConstraint.activate([
-            self.webView!.topAnchor.constraint(equalTo: view.topAnchor, constant: _navigation_bar_height),
-            self.webView!.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
-            self.webView!.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            self.webView!.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            self.titleLabel.translatesAutoresizingMaskIntoConstraints = false;
+            self.titleLabel.textAlignment = .center
+            self.titleLabel.textColor = .black
+            self.navbar.addSubview(self.titleLabel)
             
-            self.navbar.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-            self.navbar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            self.navbar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            self.navbar.heightAnchor.constraint(equalToConstant: _navigation_bar_height),
+            let scene: UIWindowScene? = UIApplication.shared.connectedScenes.first as? UIWindowScene
+            _navigation_bar_height = (scene?.statusBarManager?.statusBarFrame.height ?? 0) + 44
+            let view = viewController!.view!
+            view.addSubview(self.navbar)
+            self.webView?.removeConstraints(self.webView!.constraints)
+            view.removeConstraints(view.constraints)
             
-            self.leftBtn.bottomAnchor.constraint(equalTo: self.navbar.bottomAnchor, constant: 0),
-            self.leftBtn.leadingAnchor.constraint(equalTo: self.navbar.leadingAnchor, constant: 0),
-            self.leftBtn.heightAnchor.constraint(equalToConstant: 44),
-            self.leftBtn.widthAnchor.constraint(equalToConstant: 44),
-            
-            
-            self.rightBtn.bottomAnchor.constraint(equalTo: self.navbar.bottomAnchor, constant: 0),
-            self.rightBtn.trailingAnchor.constraint(equalTo: self.navbar.trailingAnchor, constant: 0),
-            self.rightBtn.heightAnchor.constraint(equalToConstant: 44),
-            self.rightBtn.widthAnchor.constraint(equalToConstant: 44),
+            NSLayoutConstraint.activate([
+                self.webView!.topAnchor.constraint(equalTo: view.topAnchor, constant: _navigation_bar_height),
+                self.webView!.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
+                self.webView!.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+                self.webView!.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+                
+                self.navbar.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+                self.navbar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+                self.navbar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+                self.navbar.heightAnchor.constraint(equalToConstant: _navigation_bar_height),
+                
+                self.leftBtn.bottomAnchor.constraint(equalTo: self.navbar.bottomAnchor, constant: 0),
+                self.leftBtn.leadingAnchor.constraint(equalTo: self.navbar.leadingAnchor, constant: 0),
+                self.leftBtn.heightAnchor.constraint(equalToConstant: 44),
+                self.leftBtn.widthAnchor.constraint(equalToConstant: 44),
+                
+                self.rightBtn.bottomAnchor.constraint(equalTo: self.navbar.bottomAnchor, constant: 0),
+                self.rightBtn.trailingAnchor.constraint(equalTo: self.navbar.trailingAnchor, constant: 0),
+                self.rightBtn.heightAnchor.constraint(equalToConstant: 44),
+                self.rightBtn.widthAnchor.constraint(equalToConstant: 44),
 
-            self.titleLabel.heightAnchor.constraint(equalToConstant: 44),
-            self.titleLabel.leadingAnchor.constraint(equalTo: self.leftBtn.trailingAnchor, constant: 0),
-            self.titleLabel.trailingAnchor.constraint(equalTo: self.rightBtn.leadingAnchor, constant: 0),
-            self.titleLabel.bottomAnchor.constraint(equalTo: self.navbar.bottomAnchor, constant: 0)
-        ])
+                self.titleLabel.heightAnchor.constraint(equalToConstant: 44),
+                self.titleLabel.leadingAnchor.constraint(equalTo: self.leftBtn.trailingAnchor, constant: 0),
+                self.titleLabel.trailingAnchor.constraint(equalTo: self.rightBtn.leadingAnchor, constant: 0),
+                self.titleLabel.bottomAnchor.constraint(equalTo: self.navbar.bottomAnchor, constant: 0)
+            ])
+            call.resolve();
+        }
     }
     @objc func setTitle(_ call: CAPPluginCall) {
         DispatchQueue.main.async {
