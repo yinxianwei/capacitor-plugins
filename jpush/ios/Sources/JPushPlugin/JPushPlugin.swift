@@ -25,9 +25,13 @@ public class JPushPlugin: CAPPlugin, CAPBridgedPlugin {
     }
     @objc func `init`(_ call: CAPPluginCall) {
         DispatchQueue.main.async {
-            self.startJPushSDK()
+            #if targetEnvironment(simulator)
+            call.resolve(["data": ""])
+            #else
             self.authCallbackId = call.callbackId
             self.bridge?.saveCall(call)
+            #endif
+            self.startJPushSDK()
         }
     }
     @objc func getRegistrationID(_ call: CAPPluginCall) {
