@@ -30,6 +30,7 @@ public class NavbarPlugin extends Plugin {
     private TextView titleLabel;
     private ImageButton leftBtn;
     private ImageButton rightBtn;
+    private LinearLayout navbar;
     int _navigation_bar_height = 44;
 
 
@@ -39,54 +40,56 @@ public class NavbarPlugin extends Plugin {
         leftBtn = new ImageButton(this.getContext());
         titleLabel = new TextView(this.getContext());
         rightBtn = new ImageButton(this.getContext());
+        navbar = new LinearLayout(this.getContext());
+        navbar.addView(leftBtn);
+        navbar.addView(titleLabel);
+        navbar.addView(rightBtn);
+
     }
     @PluginMethod
     public void setup(PluginCall call) {
         this.getActivity().runOnUiThread(() -> {
-            FrameLayout content = (FrameLayout) this.getActivity().findViewById(android.R.id.content);
-            _navigation_bar_height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 44, content.getResources().getDisplayMetrics());
+            if (navbar.getParent() == null) {
+                FrameLayout content = (FrameLayout) this.getActivity().findViewById(android.R.id.content);
+                _navigation_bar_height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 44, content.getResources().getDisplayMetrics());
 
-            WebView webView = this.bridge.getWebView();
-            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) webView.getLayoutParams();
-            params.setMargins(0, _navigation_bar_height, 0, 0);
-            webView.setLayoutParams(params);
+                WebView webView = this.bridge.getWebView();
+                ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) webView.getLayoutParams();
+                params.setMargins(0, _navigation_bar_height, 0, 0);
+                webView.setLayoutParams(params);
 
-            LinearLayout navbar = new LinearLayout(this.getContext());
-            navbar.setOrientation(LinearLayout.HORIZONTAL);
-            navbar.setBackgroundColor(Color.WHITE);
-            FrameLayout.LayoutParams containerParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, _navigation_bar_height);
-            navbar.setLayoutParams(containerParams);
-
-            leftBtn.setBackgroundColor(Color.TRANSPARENT);
-            leftBtn.setLayoutParams(new LinearLayout.LayoutParams(_navigation_bar_height, LinearLayout.LayoutParams.MATCH_PARENT));
-            leftBtn.setVisibility(View.INVISIBLE);
-            leftBtn.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    if (webView.canGoBack()) {
-                        webView.goBack();
+                navbar.setOrientation(LinearLayout.HORIZONTAL);
+                navbar.setBackgroundColor(Color.WHITE);
+                FrameLayout.LayoutParams containerParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, _navigation_bar_height);
+                navbar.setLayoutParams(containerParams);
+                leftBtn.setBackgroundColor(Color.TRANSPARENT);
+                leftBtn.setLayoutParams(new LinearLayout.LayoutParams(_navigation_bar_height, LinearLayout.LayoutParams.MATCH_PARENT));
+                leftBtn.setVisibility(View.INVISIBLE);
+                leftBtn.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        if (webView.canGoBack()) {
+                            webView.goBack();
+                        }
                     }
-                }
-            });
+                });
 
-            titleLabel.setBackgroundColor(Color.WHITE);
-            titleLabel.setTextColor(Color.BLACK);
-            titleLabel.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1));
-            titleLabel.setGravity(Gravity.CENTER);
-            titleLabel.setSingleLine(true);
-            titleLabel.setEllipsize(TextUtils.TruncateAt.END);
+                titleLabel.setBackgroundColor(Color.WHITE);
+                titleLabel.setTextColor(Color.BLACK);
+                titleLabel.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1));
+                titleLabel.setGravity(Gravity.CENTER);
+                titleLabel.setSingleLine(true);
+                titleLabel.setEllipsize(TextUtils.TruncateAt.END);
 
-            rightBtn.setBackgroundColor(Color.TRANSPARENT);
-            rightBtn.setLayoutParams(new LinearLayout.LayoutParams(_navigation_bar_height, LinearLayout.LayoutParams.MATCH_PARENT));
-            rightBtn.setVisibility(View.INVISIBLE);
-            rightBtn.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    notifyListeners("onRightClick", null);
-                }
-            });
-            navbar.addView(leftBtn);
-            navbar.addView(titleLabel);
-            navbar.addView(rightBtn);
-            content.addView(navbar);
+                rightBtn.setBackgroundColor(Color.TRANSPARENT);
+                rightBtn.setLayoutParams(new LinearLayout.LayoutParams(_navigation_bar_height, LinearLayout.LayoutParams.MATCH_PARENT));
+                rightBtn.setVisibility(View.INVISIBLE);
+                rightBtn.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        notifyListeners("onRightClick", null);
+                    }
+                });
+                content.addView(navbar);
+            }
             call.resolve();
         });
     }
