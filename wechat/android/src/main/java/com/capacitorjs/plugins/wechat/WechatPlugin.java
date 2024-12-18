@@ -297,6 +297,8 @@ public class WechatPlugin extends Plugin {
     private static Bitmap getBitmapFromBase64(String base64String) {
         Bitmap bitmap = null;
         try {
+            String[] list = base64String.split(",", 2);
+            base64String = list[list.length - 1];
             byte[] decodedBytes = Base64.decode(base64String, Base64.DEFAULT);
             bitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
         } catch (Exception e) {

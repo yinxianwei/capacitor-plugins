@@ -203,7 +203,11 @@ public class WechatPlugin: CAPPlugin, CAPBridgedPlugin {
                 return UIImage(data: imageData)!.pngData()!
             }
         }
-        return Data(base64Encoded: input)!
+        var base64String = input
+        if let range = input.range(of: "base64,") {
+            base64String = String(input[range.upperBound...])
+        }
+        return Data(base64Encoded: base64String)!
     }
     
     
