@@ -53,6 +53,9 @@ class WechatWeb extends core.WebPlugin {
     async openMiniProgram() {
         return true;
     }
+    async openCustomerServiceResp() {
+        return true;
+    }
 }
 
 var web = /*#__PURE__*/Object.freeze({

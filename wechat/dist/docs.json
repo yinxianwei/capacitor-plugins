@@ -180,6 +180,22 @@
         "docs": "",
         "complexTypes": [],
         "slug": "openminiprogram"
+      },
+      {
+        "name": "openCustomerServiceResp",
+        "signature": "(options: { corpId: string; url: string; }) => Promise<{ data: { errCode: number; extMsg: string; }; }>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ corpId: string; url: string; }"
+          }
+        ],
+        "returns": "Promise<{ data: { errCode: number; extMsg: string; }; }>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "opencustomerserviceresp"
       }
     ],
     "properties": []

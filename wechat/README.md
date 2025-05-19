@@ -69,32 +69,20 @@ func onResp(_ resp: BaseResp) {
 
 <docgen-index>
 
-- [@yinxianwei/wechat](#yinxianweiwechat)
-  - [Install](#install)
-    - [Config](#config)
-    - [iOS](#ios)
-    - [Android](#android)
-  - [API](#api)
-    - [isInstalled()](#isinstalled)
-    - [registerApp()](#registerapp)
-    - [shareImageMessage(...)](#shareimagemessage)
-    - [shareMiniProgramMessage(...)](#shareminiprogrammessage)
-    - [shareTextMessage(...)](#sharetextmessage)
-    - [shareWebPageMessage(...)](#sharewebpagemessage)
-    - [shareVideoMessage(...)](#sharevideomessage)
-    - [shareMusicVideoMessage(...)](#sharemusicvideomessage)
-    - [auth(...)](#auth)
-    - [sendPaymentRequest(...)](#sendpaymentrequest)
-    - [openMiniProgram(...)](#openminiprogram)
-    - [Interfaces](#interfaces)
-      - [ShareImage](#shareimage)
-      - [ShareMiniProgram](#shareminiprogram)
-      - [ShareText](#sharetext)
-      - [ShareWeb](#shareweb)
-      - [ShareVideo](#sharevideo)
-      - [ShareMusicVideo](#sharemusicvideo)
-    - [Enums](#enums)
-      - [MiniprogramType](#miniprogramtype)
+* [`isInstalled()`](#isinstalled)
+* [`registerApp()`](#registerapp)
+* [`shareImageMessage(...)`](#shareimagemessage)
+* [`shareMiniProgramMessage(...)`](#shareminiprogrammessage)
+* [`shareTextMessage(...)`](#sharetextmessage)
+* [`shareWebPageMessage(...)`](#sharewebpagemessage)
+* [`shareVideoMessage(...)`](#sharevideomessage)
+* [`shareMusicVideoMessage(...)`](#sharemusicvideomessage)
+* [`auth(...)`](#auth)
+* [`sendPaymentRequest(...)`](#sendpaymentrequest)
+* [`openMiniProgram(...)`](#openminiprogram)
+* [`openCustomerServiceResp(...)`](#opencustomerserviceresp)
+* [Interfaces](#interfaces)
+* [Enums](#enums)
 
 </docgen-index>
 
@@ -254,6 +242,21 @@ openMiniProgram(options: { userName: string; path: string; miniprogramType: stri
 | **`options`** | <code>{ userName: string; path: string; miniprogramType: string; }</code> |
 
 **Returns:** <code>Promise&lt;{ data: boolean; }&gt;</code>
+
+--------------------
+
+
+### openCustomerServiceResp(...)
+
+```typescript
+openCustomerServiceResp(options: { corpId: string; url: string; }) => Promise<{ data: { errCode: number; extMsg: string; }; }>
+```
+
+| Param         | Type                                          |
+| ------------- | --------------------------------------------- |
+| **`options`** | <code>{ corpId: string; url: string; }</code> |
+
+**Returns:** <code>Promise&lt;{ data: { errCode: number; extMsg: string; }; }&gt;</code>
 
 --------------------
 

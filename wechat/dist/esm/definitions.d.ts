@@ -97,5 +97,14 @@ export interface WechatPlugin {
     }): Promise<{
         data: boolean;
     }>;
+    openCustomerServiceResp(options: {
+        corpId: string;
+        url: string;
+    }): Promise<{
+        data: {
+            errCode: number;
+            extMsg: string;
+        };
+    }>;
 }
 export {};

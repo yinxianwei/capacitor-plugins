@@ -52,6 +52,9 @@ var capacitorWechat = (function (exports, core) {
         async openMiniProgram() {
             return true;
         }
+        async openCustomerServiceResp() {
+            return true;
+        }
     }
 
     var web = /*#__PURE__*/Object.freeze({

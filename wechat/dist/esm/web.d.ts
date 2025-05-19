@@ -12,4 +12,5 @@ export declare class WechatWeb extends WebPlugin implements WechatPlugin {
     auth(): Promise<any>;
     sendPaymentRequest(): Promise<any>;
     openMiniProgram(): Promise<any>;
+    openCustomerServiceResp(): Promise<any>;
 }

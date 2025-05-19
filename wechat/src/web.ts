@@ -36,4 +36,7 @@ export class WechatWeb extends WebPlugin implements WechatPlugin {
   async openMiniProgram(): Promise<any> {
     return true;
   }
+  async openCustomerServiceResp(): Promise<any> {
+    return true;
+  }
 }

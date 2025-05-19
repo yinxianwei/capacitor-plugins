@@ -68,4 +68,9 @@ export interface WechatPlugin {
   auth(options: { scope: string; state: string }): Promise<{ data: { appid: string; scope: string; state: string } }>;
   sendPaymentRequest(options: object): Promise<{ data: boolean }>;
   openMiniProgram(options: { userName: string; path: string; miniprogramType: string }): Promise<{ data: boolean }>;
+
+  openCustomerServiceResp(options: {
+    corpId: string;
+    url: string;
+  }): Promise<{ data: { errCode: number; extMsg: string } }>;
 }

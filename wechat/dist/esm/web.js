@@ -33,5 +33,8 @@ export class WechatWeb extends WebPlugin {
     async openMiniProgram() {
         return true;
     }
+    async openCustomerServiceResp() {
+        return true;
+    }
 }
 //# sourceMappingURL=web.js.map

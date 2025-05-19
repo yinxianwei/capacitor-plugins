@@ -20,7 +20,8 @@ public class WechatPlugin: CAPPlugin, CAPBridgedPlugin {
         CAPPluginMethod(name: "shareMusicVideoMessage", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "auth", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "sendPaymentRequest", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "openMiniProgram", returnType: CAPPluginReturnPromise)
+        CAPPluginMethod(name: "openMiniProgram", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "openCustomerServiceResp", returnType: CAPPluginReturnPromise)
     ]
     public static var shared:WechatPlugin? = nil;
     private let implementation = Wechat()
@@ -197,6 +198,17 @@ public class WechatPlugin: CAPPlugin, CAPBridgedPlugin {
         }
     }
     
+    @objc func openCustomerServiceResp(_ call: CAPPluginCall) {
+        let req = WXOpenCustomerServiceReq()
+        req.corpid = call.getString("corpId", "")
+        req.url = call.getString("url", "")
+        DispatchQueue.main.async {
+            self.callbackId = call.callbackId
+            self.bridge?.saveCall(call)
+            WXApi.send(req)
+        }
+    }
+
     @objc func getImageData(_ input: String, maxSize: Int) -> Data {
         if let url = URL(string: input), input.hasPrefix("http") {
             if let imageData = try? Data(contentsOf: url) {
@@ -208,9 +220,8 @@ public class WechatPlugin: CAPPlugin, CAPBridgedPlugin {
             base64String = String(input[range.upperBound...])
         }
         return Data(base64Encoded: base64String)!
-    }
-    
-    
+    }   
+
     public static func onResp(_ resp: Any) {
         if let callbackId = shared?.callbackId, !callbackId.isEmpty {
             let call = shared?.bridge?.savedCall(withID: callbackId)

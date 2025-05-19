@@ -11,7 +11,9 @@ import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
 import com.getcapacitor.PluginMethod;
 import com.getcapacitor.annotation.CapacitorPlugin;
+import com.tencent.mm.opensdk.constants.Build;
 import com.tencent.mm.opensdk.modelbiz.WXLaunchMiniProgram;
+import com.tencent.mm.opensdk.modelbiz.WXOpenCustomerServiceChat;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
 import com.tencent.mm.opensdk.modelmsg.WXImageObject;
@@ -211,6 +213,20 @@ public class WechatPlugin extends Plugin {
         JSObject res = new JSObject();
         res.put("data", data);
         call.resolve(res);
+    }
+    @PluginMethod
+    public void openCustomerServiceResp(PluginCall call) {
+        IWXAPI api = this.getWxApi();
+        if (api.getWXAppSupportAPI() >= Build.SUPPORT_OPEN_CUSTOMER_SERVICE_CHAT) {
+            WXOpenCustomerServiceChat.Req req = new WXOpenCustomerServiceChat.Req();
+            req.corpId = call.getString("corpId");
+            req.url = call.getString("url");
+            api.sendReq(req);
+            callbackId = call.getCallbackId();
+            bridge.saveCall(call);
+        } else {
+            call.reject("no support");
+        }
     }
     @PluginMethod
     public void auth(PluginCall call) {
