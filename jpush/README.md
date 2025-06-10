@@ -205,17 +205,12 @@ apply plugin: 'com.huawei.agconnect'
 
 <docgen-index>
 
-- [@yinxianwei/jpush](#yinxianweijpush)
-  - [Install](#install)
-    - [Config](#config)
-    - [iOS](#ios)
-    - [Android](#android)
-  - [API](#api)
-    - [init()](#init)
-    - [getRegistrationID()](#getregistrationid)
-    - [setTags(...)](#settags)
-    - [setAlias(...)](#setalias)
-    - [addListener('openNotification', ...)](#addlisteneropennotification-)
+* [`init()`](#init)
+* [`getRegistrationID()`](#getregistrationid)
+* [`setTags(...)`](#settags)
+* [`setAlias(...)`](#setalias)
+* [`addListener('openNotification', ...)`](#addlisteneropennotification-)
+* [`getRemoteNotification()`](#getremotenotification)
 
 </docgen-index>
 
@@ -284,6 +279,17 @@ addListener(name: 'openNotification', callback: { (): { badge: number; body: str
 | -------------- | ------------------------------------------------------------------------------------------------------- |
 | **`name`**     | <code>'openNotification'</code>                                                                         |
 | **`callback`** | <code>() =&gt; { badge: number; body: string; subtitle: string; title: string; extras: string; }</code> |
+
+--------------------
+
+
+### getRemoteNotification()
+
+```typescript
+getRemoteNotification() => Promise<any>
+```
+
+**Returns:** <code>Promise&lt;any&gt;</code>
 
 --------------------
 

@@ -21,6 +21,9 @@ var capacitorJPush = (function (exports, core) {
         async addListener() {
             return undefined;
         }
+        async getRemoteNotification() {
+            return undefined;
+        }
     }
 
     var web = /*#__PURE__*/Object.freeze({

@@ -37,4 +37,5 @@ export interface JPushPlugin {
             extras: string;
         };
     }): void;
+    getRemoteNotification(): Promise<any>;
 }

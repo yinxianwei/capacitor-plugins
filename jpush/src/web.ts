@@ -18,4 +18,7 @@ export class JPushWeb extends WebPlugin implements JPushPlugin {
   async addListener(): Promise<any> {
     return undefined;
   }
+  async getRemoteNotification(): Promise<any> {
+    return undefined;
+  }
 }

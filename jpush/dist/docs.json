@@ -77,6 +77,16 @@
         "docs": "",
         "complexTypes": [],
         "slug": "addlisteneropennotification-"
+      },
+      {
+        "name": "getRemoteNotification",
+        "signature": "() => Promise<any>",
+        "parameters": [],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "getremotenotification"
       }
     ],
     "properties": []

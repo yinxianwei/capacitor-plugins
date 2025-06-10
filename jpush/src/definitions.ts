@@ -21,4 +21,5 @@ export interface JPushPlugin {
       };
     },
   ): void;
+  getRemoteNotification(): Promise<any>;
 }

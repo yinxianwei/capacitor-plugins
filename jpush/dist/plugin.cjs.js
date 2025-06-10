@@ -22,6 +22,9 @@ class JPushWeb extends core.WebPlugin {
     async addListener() {
         return undefined;
     }
+    async getRemoteNotification() {
+        return undefined;
+    }
 }
 
 var web = /*#__PURE__*/Object.freeze({

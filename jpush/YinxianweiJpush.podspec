@@ -18,4 +18,5 @@ Pod::Spec.new do |s|
   s.dependency 'JPush', '5.4.0'
   s.static_framework = true
   s.public_header_files = 'ios/Sources/**/*.h'
+
 end

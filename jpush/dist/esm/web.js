@@ -15,5 +15,8 @@ export class JPushWeb extends WebPlugin {
     async addListener() {
         return undefined;
     }
+    async getRemoteNotification() {
+        return undefined;
+    }
 }
 //# sourceMappingURL=web.js.map
