@@ -1,0 +1,55 @@
+{
+  "api": {
+    "name": "YPushPlugin",
+    "slug": "ypushplugin",
+    "docs": "",
+    "tags": [],
+    "methods": [
+      {
+        "name": "getNotificationSettings",
+        "signature": "() => Promise<{ data: number; }>",
+        "parameters": [],
+        "returns": "Promise<{ data: number; }>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "getnotificationsettings"
+      },
+      {
+        "name": "requestAuthorization",
+        "signature": "() => Promise<{ data: boolean; }>",
+        "parameters": [],
+        "returns": "Promise<{ data: boolean; }>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "requestauthorization"
+      },
+      {
+        "name": "getDeviceToken",
+        "signature": "() => Promise<{ data: string; }>",
+        "parameters": [],
+        "returns": "Promise<{ data: string; }>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "getdevicetoken"
+      },
+      {
+        "name": "openSettings",
+        "signature": "() => Promise<{ data: boolean; }>",
+        "parameters": [],
+        "returns": "Promise<{ data: boolean; }>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "opensettings"
+      }
+    ],
+    "properties": []
+  },
+  "interfaces": [],
+  "enums": [],
+  "typeAliases": [],
+  "pluginConfigs": []
+}

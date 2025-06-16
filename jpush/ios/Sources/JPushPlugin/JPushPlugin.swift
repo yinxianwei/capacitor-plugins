@@ -9,24 +9,19 @@ import Capacitor
 public class JPushPlugin: CAPPlugin, CAPBridgedPlugin  {
     public let identifier = "JPushPlugin"
     public let jsName = "JPush"
-    var userinfo: [AnyHashable : Any]?
+    var launchOptions: [AnyHashable : Any]?
     var authCallbackId: String?
-    static var remoteNotification: [AnyHashable: Any]?
 
     public let pluginMethods: [CAPPluginMethod] = [
         CAPPluginMethod(name: "init", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "getRegistrationID", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "setTags", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "setAlias", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "getRemoteNotification", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "setAlias", returnType: CAPPluginReturnPromise)
     ]
     private let implementation = JPush()
 
     override public func load() {
         NotificationCenter.default.addObserver(self, selector: #selector(applicationDidLaunch), name: UIApplication.didFinishLaunchingNotification, object: nil)
-    }
-    public static func setup(remoteNotification: [AnyHashable: Any]?) {
-        self.remoteNotification = remoteNotification
     }
     @objc func `init`(_ call: CAPPluginCall) {
         DispatchQueue.main.async {
@@ -72,8 +67,11 @@ public class JPushPlugin: CAPPlugin, CAPBridgedPlugin  {
         }
     }
     @objc func applicationDidLaunch (notification: Notification) {
-        self.userinfo = notification.userInfo
-        JPUSHService.setDebugMode()
+        if let userInfo = notification.userInfo,
+           let launchOptions = userInfo[UIApplication.LaunchOptionsKey.remoteNotification] as? [AnyHashable: Any] {
+            self.launchOptions = launchOptions
+        }
+
     }
     @objc func startJPushSDK() {
         let entity = JPUSHRegisterEntity()
@@ -82,28 +80,24 @@ public class JPushPlugin: CAPPlugin, CAPBridgedPlugin  {
         NSInteger(UNAuthorizationOptions.badge.rawValue)
 
         JPUSHService.register(forRemoteNotificationConfig: entity, delegate: self)
-        JPUSHService.setup(withOption: self.userinfo, appKey: self.getConfig().getString("appKey") ?? "", channel: self.getConfig().getString("channel") ?? "", apsForProduction: self.getConfig().getBoolean("isProduction", false), advertisingIdentifier: nil)
+        JPUSHService.setup(withOption: self.launchOptions, appKey: self.getConfig().getString("appKey") ?? "", channel: self.getConfig().getString("channel") ?? "", apsForProduction: self.getConfig().getBoolean("isProduction", false), advertisingIdentifier: nil)
     }
-    @objc func getRemoteNotification(_ call: CAPPluginCall) {
-        DispatchQueue.main.async {
-            if let remoteNotification = JPushPlugin.remoteNotification {
-                var data = ["badge": 0, "body": "", "subtitle": "", "title": "", "extras": nil]
-                if let aps = remoteNotification["aps"] as? [String: Any] {
-                    if let alert = aps["alert"] as? [String: Any] {
-                        data["body"] = alert["body"] as? String ?? ""
-                        data["subtitle"] = alert["subtitle"] as? String ?? ""
-                        data["title"] = alert["title"] as? String ?? ""
-                    }
-                    data["badge"] = aps["badge"] as? Int ?? 0
+    
+    public override func addListener(_ call: CAPPluginCall) {
+        super.addListener(call)
+        if let launchOptions = self.launchOptions {
+            var data = ["badge": 0, "body": "", "subtitle": "", "title": "", "extras": nil] as [String : Any?]
+            if let aps = launchOptions["aps"] as? [String: Any] {
+                if let alert = aps["alert"] as? [String: Any] {
+                    data["body"] = alert["body"] as? String ?? ""
+                    data["subtitle"] = alert["subtitle"] as? String ?? ""
+                    data["title"] = alert["title"] as? String ?? ""
                 }
-                var extras = remoteNotification
-                data["extras"] = extras
-                self.notifyListeners("openNotification", data: data as [String : Any])
-                JPushPlugin.remoteNotification = nil
-                call.resolve()
-            } else {
-                call.resolve()
+                data["badge"] = aps["badge"] as? Int ?? 0
             }
+            data["extras"] = launchOptions
+            self.notifyListeners("openNotification", data: data as [String : Any])
+            self.launchOptions = nil
         }
     }
 }
