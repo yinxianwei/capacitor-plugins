@@ -1,7 +1,6 @@
 import Foundation
 import Capacitor
 
-var _navigation_bar_height = CGFloat(44)
 
 /**
  * Please read the Capacitor iOS Plugin Development Guide
@@ -20,12 +19,15 @@ public class NavbarPlugin: CAPPlugin, CAPBridgedPlugin {
         CAPPluginMethod(name: "setRightIcon", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "allowsBackForwardNavigationGestures", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "exitApp", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "setVisibility", returnType: CAPPluginReturnPromise),
     ]
     private let implementation = Navbar()
     public let navbar = UIView(frame: .zero)
     public let titleLabel = UILabel()
     public let leftBtn = UIButton()
     public let rightBtn = UIButton()
+    var topConstraint: NSLayoutConstraint!
+    var _navigation_bar_height: CGFloat = 44
 
     @objc func setup(_ call: CAPPluginCall) {
         DispatchQueue.main.async {
@@ -54,14 +56,17 @@ public class NavbarPlugin: CAPPlugin, CAPBridgedPlugin {
             self.navbar.addSubview(self.titleLabel)
             
             let scene: UIWindowScene? = UIApplication.shared.connectedScenes.first as? UIWindowScene
-            _navigation_bar_height = (scene?.statusBarManager?.statusBarFrame.height ?? 0) + 44
+            self._navigation_bar_height = (scene?.statusBarManager?.statusBarFrame.height ?? 0) + 44
             let view = viewController!.view!
             view.addSubview(self.navbar)
+            self.navbar.isHidden = false
+            self.navbar.alpha = 0
             self.webView?.removeConstraints(self.webView!.constraints)
             view.removeConstraints(view.constraints)
-            
+            self.topConstraint = self.webView!.topAnchor.constraint(equalTo: view.topAnchor, constant: 0)
+
             NSLayoutConstraint.activate([
-                self.webView!.topAnchor.constraint(equalTo: view.topAnchor, constant: _navigation_bar_height),
+                self.topConstraint,
                 self.webView!.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
                 self.webView!.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
                 self.webView!.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
@@ -69,7 +74,7 @@ public class NavbarPlugin: CAPPlugin, CAPBridgedPlugin {
                 self.navbar.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
                 self.navbar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
                 self.navbar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-                self.navbar.heightAnchor.constraint(equalToConstant: _navigation_bar_height),
+                self.navbar.heightAnchor.constraint(equalToConstant: self._navigation_bar_height),
                 
                 self.leftBtn.bottomAnchor.constraint(equalTo: self.navbar.bottomAnchor, constant: 0),
                 self.leftBtn.leadingAnchor.constraint(equalTo: self.navbar.leadingAnchor, constant: 0),
@@ -86,8 +91,29 @@ public class NavbarPlugin: CAPPlugin, CAPBridgedPlugin {
                 self.titleLabel.trailingAnchor.constraint(equalTo: self.rightBtn.leadingAnchor, constant: 0),
                 self.titleLabel.bottomAnchor.constraint(equalTo: self.navbar.bottomAnchor, constant: 0)
             ])
+            
             call.resolve();
         }
+    }
+    @objc func setVisibility(_ call: CAPPluginCall) {
+        DispatchQueue.main.async {
+            if self.topConstraint != nil {
+                let visible = call.getBool("value") ?? true
+                if visible {
+                    self.topConstraint.constant = self._navigation_bar_height
+                    self.webView!.scrollView.contentInset.top = 0
+                    self.navbar.alpha = 1
+                } else {
+                    self.topConstraint.constant = 0
+                    self.webView!.scrollView.contentInset.top = 0
+                    self.navbar.alpha = 0
+                }
+                let viewController = self.bridge?.viewController as? CAPBridgeViewController
+                viewController?.view.layoutIfNeeded()
+            }
+            call.resolve()
+        }
+
     }
     @objc func setTitle(_ call: CAPPluginCall) {
         DispatchQueue.main.async {

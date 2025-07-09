@@ -55,7 +55,7 @@ public class NavbarPlugin extends Plugin {
 
                 WebView webView = this.bridge.getWebView();
                 ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) webView.getLayoutParams();
-                params.setMargins(0, _navigation_bar_height, 0, 0);
+                params.setMargins(0, 0, 0, 0);
                 webView.setLayoutParams(params);
 
                 navbar.setOrientation(LinearLayout.HORIZONTAL);
@@ -88,6 +88,7 @@ public class NavbarPlugin extends Plugin {
                         notifyListeners("onRightClick", null);
                     }
                 });
+                navbar.setVisibility(View.GONE);
                 content.addView(navbar);
             }
             call.resolve();
@@ -162,5 +163,27 @@ public class NavbarPlugin extends Plugin {
     public void exitApp(PluginCall call) {
         System.exit(0);
         call.resolve();
+    }
+
+    @PluginMethod
+    public void setVisibility(PluginCall call) {
+        this.getActivity().runOnUiThread(() -> {
+            Boolean value = call.getBoolean("value");
+            if (value) {
+                navbar.setVisibility(View.VISIBLE);
+                WebView webView = this.bridge.getWebView();
+                ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) webView.getLayoutParams();
+                params.setMargins(0, _navigation_bar_height, 0, 0);
+                webView.setLayoutParams(params);
+            } else {
+                navbar.setVisibility(View.GONE);
+                WebView webView = this.bridge.getWebView();
+                ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) webView.getLayoutParams();
+                params.setMargins(0, 0, 0, 0);
+                webView.setLayoutParams(params);
+            }
+            call.resolve();
+        });
+
     }
 }

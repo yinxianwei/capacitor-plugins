@@ -6,6 +6,22 @@
     "tags": [],
     "methods": [
       {
+        "name": "setup",
+        "signature": "(options: { title: string; leftIcon: string; leftVisibility: boolean; rightIcon: string; rightVisibility: false; }) => Promise<boolean>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ title: string; leftIcon: string; leftVisibility: boolean; rightIcon: string; rightVisibility: false; }"
+          }
+        ],
+        "returns": "Promise<boolean>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "setup"
+      },
+      {
         "name": "setTitle",
         "signature": "(options: { value: string; }) => Promise<boolean>",
         "parameters": [
@@ -110,6 +126,22 @@
         "docs": "",
         "complexTypes": [],
         "slug": "exitapp"
+      },
+      {
+        "name": "setVisibility",
+        "signature": "(options: { value: boolean; }) => Promise<boolean>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ value: boolean; }"
+          }
+        ],
+        "returns": "Promise<boolean>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "setvisibility"
       }
     ],
     "properties": []

@@ -1,4 +1,11 @@
 export interface NavbarPlugin {
+    setup(options: {
+        title: string;
+        leftIcon: string;
+        leftVisibility: boolean;
+        rightIcon: string;
+        rightVisibility: false;
+    }): Promise<boolean>;
     setTitle(options: {
         value: string;
     }): Promise<boolean>;
@@ -18,4 +25,7 @@ export interface NavbarPlugin {
         value: boolean;
     }): Promise<boolean>;
     exitApp(): Promise<boolean>;
+    setVisibility(options: {
+        value: boolean;
+    }): Promise<boolean>;
 }

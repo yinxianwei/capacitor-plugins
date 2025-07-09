@@ -7,4 +7,5 @@ export interface NavbarPlugin {
   setRightVisibility(options: { value: boolean }): Promise<boolean>;
   allowsBackForwardNavigationGestures(options: { value: boolean }): Promise<boolean>;
   exitApp(): Promise<boolean>;
+  setVisibility(options: { value: boolean }): Promise<boolean>;
 }

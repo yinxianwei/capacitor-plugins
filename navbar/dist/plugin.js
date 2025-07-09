@@ -6,6 +6,9 @@ var capacitorNavbar = (function (exports, core) {
     });
 
     class NavbarWeb extends core.WebPlugin {
+        async setup() {
+            return true;
+        }
         async setTitle(options) {
             document.title = options.value;
             return true;
@@ -26,6 +29,9 @@ var capacitorNavbar = (function (exports, core) {
             return true;
         }
         async exitApp() {
+            return true;
+        }
+        async setVisibility() {
             return true;
         }
     }

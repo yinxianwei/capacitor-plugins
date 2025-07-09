@@ -28,4 +28,7 @@ export class NavbarWeb extends WebPlugin implements NavbarPlugin {
   async exitApp(): Promise<boolean> {
     return true;
   }
+  async setVisibility(): Promise<boolean> {
+    return true;
+  }
 }

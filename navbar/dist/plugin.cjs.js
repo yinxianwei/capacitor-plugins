@@ -7,6 +7,9 @@ const Navbar = core.registerPlugin('Navbar', {
 });
 
 class NavbarWeb extends core.WebPlugin {
+    async setup() {
+        return true;
+    }
     async setTitle(options) {
         document.title = options.value;
         return true;
@@ -27,6 +30,9 @@ class NavbarWeb extends core.WebPlugin {
         return true;
     }
     async exitApp() {
+        return true;
+    }
+    async setVisibility() {
         return true;
     }
 }
