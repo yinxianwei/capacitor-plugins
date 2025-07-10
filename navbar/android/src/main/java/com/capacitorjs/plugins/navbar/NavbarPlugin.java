@@ -55,7 +55,7 @@ public class NavbarPlugin extends Plugin {
 
                 WebView webView = this.bridge.getWebView();
                 ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) webView.getLayoutParams();
-                params.setMargins(0, 0, 0, 0);
+                params.setMargins(0, _navigation_bar_height, 0, 0);
                 webView.setLayoutParams(params);
 
                 navbar.setOrientation(LinearLayout.HORIZONTAL);
@@ -88,7 +88,6 @@ public class NavbarPlugin extends Plugin {
                         notifyListeners("onRightClick", null);
                     }
                 });
-                navbar.setVisibility(View.GONE);
                 content.addView(navbar);
             }
             call.resolve();
