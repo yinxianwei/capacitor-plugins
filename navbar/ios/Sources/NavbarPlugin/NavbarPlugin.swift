@@ -60,10 +60,9 @@ public class NavbarPlugin: CAPPlugin, CAPBridgedPlugin {
             let view = viewController!.view!
             view.addSubview(self.navbar)
             self.navbar.isHidden = false
-            self.navbar.alpha = 0
             self.webView?.removeConstraints(self.webView!.constraints)
             view.removeConstraints(view.constraints)
-            self.topConstraint = self.webView!.topAnchor.constraint(equalTo: view.topAnchor, constant: 0)
+            self.topConstraint = self.webView!.topAnchor.constraint(equalTo: view.topAnchor, constant: self._navigation_bar_height)
 
             NSLayoutConstraint.activate([
                 self.topConstraint,
