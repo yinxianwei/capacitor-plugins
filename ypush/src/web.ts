@@ -15,4 +15,7 @@ export class YPushWeb extends WebPlugin implements YPushPlugin {
   async openSettings(): Promise<any> {
     return;
   }
+  async setBadge(): Promise<any> {
+    return;
+  }
 }

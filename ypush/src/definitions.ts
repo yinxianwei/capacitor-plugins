@@ -3,4 +3,5 @@ export interface YPushPlugin {
   requestAuthorization(): Promise<{ data: boolean }>;
   getDeviceToken(): Promise<{ data: string }>;
   openSettings(): Promise<{ data: boolean }>;
+  setBadge(options: { value: number }): Promise<{ data: boolean }>;
 }

@@ -12,5 +12,8 @@ export class YPushWeb extends WebPlugin {
     async openSettings() {
         return;
     }
+    async setBadge() {
+        return;
+    }
 }
 //# sourceMappingURL=web.js.map

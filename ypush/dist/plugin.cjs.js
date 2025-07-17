@@ -19,6 +19,9 @@ class YPushWeb extends core.WebPlugin {
     async openSettings() {
         return;
     }
+    async setBadge() {
+        return;
+    }
 }
 
 var web = /*#__PURE__*/Object.freeze({

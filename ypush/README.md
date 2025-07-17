@@ -17,6 +17,7 @@ npx cap sync
 * [`requestAuthorization()`](#requestauthorization)
 * [`getDeviceToken()`](#getdevicetoken)
 * [`openSettings()`](#opensettings)
+* [`setBadge(...)`](#setbadge)
 
 </docgen-index>
 
@@ -61,6 +62,21 @@ getDeviceToken() => Promise<{ data: string; }>
 ```typescript
 openSettings() => Promise<{ data: boolean; }>
 ```
+
+**Returns:** <code>Promise&lt;{ data: boolean; }&gt;</code>
+
+--------------------
+
+
+### setBadge(...)
+
+```typescript
+setBadge(options: { value: number; }) => Promise<{ data: boolean; }>
+```
+
+| Param         | Type                            |
+| ------------- | ------------------------------- |
+| **`options`** | <code>{ value: number; }</code> |
 
 **Returns:** <code>Promise&lt;{ data: boolean; }&gt;</code>
 

@@ -26,7 +26,8 @@ public class YPushPlugin: CAPPlugin, CAPBridgedPlugin, UNUserNotificationCenterD
         CAPPluginMethod(name: "getNotificationSettings", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "requestAuthorization", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "getDeviceToken", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "openSettings", returnType: CAPPluginReturnPromise)
+        CAPPluginMethod(name: "openSettings", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "setBadge", returnType: CAPPluginReturnPromise)
     ]
     private let implementation = YPush()
     
@@ -53,9 +54,13 @@ public class YPushPlugin: CAPPlugin, CAPBridgedPlugin, UNUserNotificationCenterD
     }
     @objc func getDeviceToken(_ call: CAPPluginCall) {
         DispatchQueue.main.async {
+            #if targetEnvironment(simulator)
+            call.resolve(["data": ""])
+            #else
             self.callbackId = call.callbackId
             self.bridge?.saveCall(call)
             UIApplication.shared.registerForRemoteNotifications()
+            #endif
         }
     }
     @objc func openSettings(_ call: CAPPluginCall) {
@@ -69,7 +74,12 @@ public class YPushPlugin: CAPPlugin, CAPBridgedPlugin, UNUserNotificationCenterD
             call.resolve(["data": false])
         }
     }
-    
+    @objc func setBadge(_ call: CAPPluginCall) {
+        DispatchQueue.main.async {
+            UIApplication.shared.applicationIconBadgeNumber = call.getInt("value") ?? 0
+            call.resolve(["data": true])
+        }
+    }
     
     @objc func notify(_ request: UNNotificationRequest) {
         let extras = request.content.userInfo

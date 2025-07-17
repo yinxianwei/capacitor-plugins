@@ -18,6 +18,9 @@ var capacitorYPush = (function (exports, core) {
         async openSettings() {
             return;
         }
+        async setBadge() {
+            return;
+        }
     }
 
     var web = /*#__PURE__*/Object.freeze({

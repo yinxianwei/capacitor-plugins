@@ -11,4 +11,9 @@ export interface YPushPlugin {
     openSettings(): Promise<{
         data: boolean;
     }>;
+    setBadge(options: {
+        value: number;
+    }): Promise<{
+        data: boolean;
+    }>;
 }

@@ -44,6 +44,22 @@
         "docs": "",
         "complexTypes": [],
         "slug": "opensettings"
+      },
+      {
+        "name": "setBadge",
+        "signature": "(options: { value: number; }) => Promise<{ data: boolean; }>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ value: number; }"
+          }
+        ],
+        "returns": "Promise<{ data: boolean; }>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "setbadge"
       }
     ],
     "properties": []

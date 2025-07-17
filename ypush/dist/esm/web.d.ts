@@ -5,4 +5,5 @@ export declare class YPushWeb extends WebPlugin implements YPushPlugin {
     requestAuthorization(): Promise<any>;
     getDeviceToken(): Promise<any>;
     openSettings(): Promise<any>;
+    setBadge(): Promise<any>;
 }
