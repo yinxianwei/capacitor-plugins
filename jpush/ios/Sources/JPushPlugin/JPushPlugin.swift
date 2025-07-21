@@ -16,7 +16,8 @@ public class JPushPlugin: CAPPlugin, CAPBridgedPlugin  {
         CAPPluginMethod(name: "init", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "getRegistrationID", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "setTags", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "setAlias", returnType: CAPPluginReturnPromise)
+        CAPPluginMethod(name: "setAlias", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "setBadge", returnType: CAPPluginReturnPromise)
     ]
     private let implementation = JPush()
 
@@ -82,7 +83,12 @@ public class JPushPlugin: CAPPlugin, CAPBridgedPlugin  {
         JPUSHService.register(forRemoteNotificationConfig: entity, delegate: self)
         JPUSHService.setup(withOption: self.launchOptions, appKey: self.getConfig().getString("appKey") ?? "", channel: self.getConfig().getString("channel") ?? "", apsForProduction: self.getConfig().getBoolean("isProduction", false), advertisingIdentifier: nil)
     }
-    
+    @objc func setBadge(_ call: CAPPluginCall) {
+        DispatchQueue.main.async {
+            JPUSHService.setBadge(call.getInt("value") ?? 0)
+            call.resolve()
+        }
+    }
     public override func addListener(_ call: CAPPluginCall) {
         super.addListener(call)
         if let launchOptions = self.launchOptions {

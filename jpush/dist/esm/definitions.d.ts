@@ -38,4 +38,17 @@ export interface JPushPlugin {
         };
     }): void;
     getRemoteNotification(): Promise<any>;
+    setBadge(options: {
+        value: number;
+    }): Promise<{
+        data: boolean;
+    }>;
+    clearAllNotifications(): Promise<{
+        data: boolean;
+    }>;
+    clearNotificationById(options: {
+        value: number;
+    }): Promise<{
+        data: boolean;
+    }>;
 }

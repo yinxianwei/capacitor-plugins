@@ -25,6 +25,15 @@ class JPushWeb extends core.WebPlugin {
     async getRemoteNotification() {
         return undefined;
     }
+    async setBadge() {
+        return;
+    }
+    async clearAllNotifications() {
+        return;
+    }
+    async clearNotificationById() {
+        return;
+    }
 }
 
 var web = /*#__PURE__*/Object.freeze({

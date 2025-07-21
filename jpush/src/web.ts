@@ -21,4 +21,13 @@ export class JPushWeb extends WebPlugin implements JPushPlugin {
   async getRemoteNotification(): Promise<any> {
     return undefined;
   }
+  async setBadge(): Promise<any> {
+    return;
+  }
+  async clearAllNotifications(): Promise<any> {
+    return;
+  }
+  async clearNotificationById(): Promise<any> {
+    return;
+  }
 }

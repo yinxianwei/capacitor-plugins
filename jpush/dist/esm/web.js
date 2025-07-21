@@ -18,5 +18,14 @@ export class JPushWeb extends WebPlugin {
     async getRemoteNotification() {
         return undefined;
     }
+    async setBadge() {
+        return;
+    }
+    async clearAllNotifications() {
+        return;
+    }
+    async clearNotificationById() {
+        return;
+    }
 }
 //# sourceMappingURL=web.js.map

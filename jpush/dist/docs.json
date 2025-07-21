@@ -87,6 +87,48 @@
         "docs": "",
         "complexTypes": [],
         "slug": "getremotenotification"
+      },
+      {
+        "name": "setBadge",
+        "signature": "(options: { value: number; }) => Promise<{ data: boolean; }>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ value: number; }"
+          }
+        ],
+        "returns": "Promise<{ data: boolean; }>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "setbadge"
+      },
+      {
+        "name": "clearAllNotifications",
+        "signature": "() => Promise<{ data: boolean; }>",
+        "parameters": [],
+        "returns": "Promise<{ data: boolean; }>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "clearallnotifications"
+      },
+      {
+        "name": "clearNotificationById",
+        "signature": "(options: { value: number; }) => Promise<{ data: boolean; }>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ value: number; }"
+          }
+        ],
+        "returns": "Promise<{ data: boolean; }>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "clearnotificationbyid"
       }
     ],
     "properties": []

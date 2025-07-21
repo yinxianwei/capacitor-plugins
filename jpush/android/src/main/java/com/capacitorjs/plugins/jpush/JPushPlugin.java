@@ -117,6 +117,34 @@ public class JPushPlugin extends Plugin {
         this.bridge.saveCall(call);
     }
 
+    @PluginMethod
+    public void setBadge(PluginCall call) {
+        Integer valueObj = call.getInt("value", 0);
+        this.getActivity().runOnUiThread(() -> {
+            int value = valueObj != null ? valueObj : 0;
+            JPushInterface.setBadgeNumber(this.getContext(), value);
+            call.resolve();
+        });
+    }
+
+    @PluginMethod
+    public void clearAllNotifications(PluginCall call) {
+        this.getActivity().runOnUiThread(() -> {
+            JPushInterface.clearAllNotifications(this.getContext());
+            call.resolve();
+        });
+    }
+
+    @PluginMethod
+    public void clearNotificationById(PluginCall call) {
+        this.getActivity().runOnUiThread(() -> {
+            Integer valueObj = call.getInt("value", 0);
+            int notificationId = valueObj != null ? valueObj : 0;
+            JPushInterface.clearNotificationById(this.getContext(), notificationId);
+            call.resolve();
+        });
+    }
+
     static void onTagOperatorResult(JPushMessage jPushMessage) {
         if (instance.tagsCallId != null) {
             JSObject res = new JSObject();

@@ -211,6 +211,9 @@ apply plugin: 'com.huawei.agconnect'
 * [`setAlias(...)`](#setalias)
 * [`addListener('openNotification', ...)`](#addlisteneropennotification-)
 * [`getRemoteNotification()`](#getremotenotification)
+* [`setBadge(...)`](#setbadge)
+* [`clearAllNotifications()`](#clearallnotifications)
+* [`clearNotificationById(...)`](#clearnotificationbyid)
 
 </docgen-index>
 
@@ -290,6 +293,47 @@ getRemoteNotification() => Promise<any>
 ```
 
 **Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setBadge(...)
+
+```typescript
+setBadge(options: { value: number; }) => Promise<{ data: boolean; }>
+```
+
+| Param         | Type                            |
+| ------------- | ------------------------------- |
+| **`options`** | <code>{ value: number; }</code> |
+
+**Returns:** <code>Promise&lt;{ data: boolean; }&gt;</code>
+
+--------------------
+
+
+### clearAllNotifications()
+
+```typescript
+clearAllNotifications() => Promise<{ data: boolean; }>
+```
+
+**Returns:** <code>Promise&lt;{ data: boolean; }&gt;</code>
+
+--------------------
+
+
+### clearNotificationById(...)
+
+```typescript
+clearNotificationById(options: { value: number; }) => Promise<{ data: boolean; }>
+```
+
+| Param         | Type                            |
+| ------------- | ------------------------------- |
+| **`options`** | <code>{ value: number; }</code> |
+
+**Returns:** <code>Promise&lt;{ data: boolean; }&gt;</code>
 
 --------------------
 

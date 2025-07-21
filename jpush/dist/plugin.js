@@ -24,6 +24,15 @@ var capacitorJPush = (function (exports, core) {
         async getRemoteNotification() {
             return undefined;
         }
+        async setBadge() {
+            return;
+        }
+        async clearAllNotifications() {
+            return;
+        }
+        async clearNotificationById() {
+            return;
+        }
     }
 
     var web = /*#__PURE__*/Object.freeze({

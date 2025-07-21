@@ -7,4 +7,7 @@ export declare class JPushWeb extends WebPlugin implements JPushPlugin {
     setAlias(): Promise<any>;
     addListener(): Promise<any>;
     getRemoteNotification(): Promise<any>;
+    setBadge(): Promise<any>;
+    clearAllNotifications(): Promise<any>;
+    clearNotificationById(): Promise<any>;
 }
