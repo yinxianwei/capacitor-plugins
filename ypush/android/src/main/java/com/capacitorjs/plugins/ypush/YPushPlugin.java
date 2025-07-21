@@ -1,4 +1,4 @@
-package com.mycompany.plugins.example;
+package com.capacitorjs.plugins.ypush;
 
 import com.getcapacitor.JSObject;
 import com.getcapacitor.Plugin;
