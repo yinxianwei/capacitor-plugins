@@ -10,7 +10,7 @@ export class YlocationWeb extends WebPlugin implements YlocationPlugin {
           resolve(pos);
         },
         (err) => {
-          reject(err);
+          reject(err.message);
         },
         Object.assign({ enableHighAccuracy: false, timeout: 5000, maximumAge: 0 }, options),
       );
