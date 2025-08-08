@@ -1,4 +1,5 @@
 export interface YlocationPlugin {
+  requestPermissions(): Promise<boolean>;
   getCurrentPosition(options: { enableHighAccuracy: boolean; timeout: number }): Promise<Position>;
 }
 

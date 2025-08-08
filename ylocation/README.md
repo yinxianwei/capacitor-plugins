@@ -13,6 +13,7 @@ npx cap sync
 
 <docgen-index>
 
+* [`requestPermissions()`](#requestpermissions)
 * [`getCurrentPosition(...)`](#getcurrentposition)
 * [Interfaces](#interfaces)
 
@@ -20,6 +21,17 @@ npx cap sync
 
 <docgen-api>
 <!--Update the source file JSDoc comments and rerun docgen to update the docs below-->
+
+### requestPermissions()
+
+```typescript
+requestPermissions() => Promise<boolean>
+```
+
+**Returns:** <code>Promise&lt;boolean&gt;</code>
+
+--------------------
+
 
 ### getCurrentPosition(...)
 
