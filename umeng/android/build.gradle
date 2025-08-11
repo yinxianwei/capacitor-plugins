@@ -9,6 +9,10 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        maven { url 'https://repo1.maven.org/maven2/' }
+        flatDir {
+            dirs 'libs'
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:8.2.1'
@@ -45,6 +49,7 @@ android {
 repositories {
     google()
     mavenCentral()
+    maven { url 'https://repo1.maven.org/maven2/' }
 }
 
 
