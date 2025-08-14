@@ -27,7 +27,17 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
     }
 
     @Override
-    public void onReq(BaseReq baseReq) {}
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        IWXAPI wxAPI = WechatPlugin.getWxApi();
+        wxAPI.handleIntent(intent, this);
+    }
+
+    @Override
+    public void onReq(BaseReq baseReq) {
+        finish();
+    }
 
     @Override
     public void onResp(BaseResp baseResp) {

@@ -46,7 +46,7 @@ public class WechatPlugin extends Plugin {
     @Override
     public void load() {
         super.load();
-        APPID = this.getConfig().getString("AppId", "");
+        APPID = this.getConfig().getString("appId", "");
         bridge = this.getBridge();
     }
 
@@ -71,7 +71,7 @@ public class WechatPlugin extends Plugin {
     }
     @PluginMethod
     public void registerApp(PluginCall call) {
-        boolean result = this.getWxApi().registerApp(APPID);
+        boolean result = WechatPlugin.getWxApi().registerApp(APPID);
         JSObject res = new JSObject();
         res.put("data", result);
         call.resolve(res);
@@ -95,7 +95,7 @@ public class WechatPlugin extends Plugin {
         req.message = msg;
         req.transaction = buildTransaction("img");
         req.scene = call.getInt("scene", SendMessageToWX.Req.WXSceneSession);
-        boolean data = this.getWxApi().sendReq(req);
+        boolean data = WechatPlugin.getWxApi().sendReq(req);
         JSObject res = new JSObject();
         res.put("data", data);
         call.resolve(res);
@@ -113,7 +113,7 @@ public class WechatPlugin extends Plugin {
         req.transaction = buildTransaction("text");
         req.message = msg;
         req.scene = call.getInt("scene", SendMessageToWX.Req.WXSceneSession);
-        boolean data = this.getWxApi().sendReq(req);
+        boolean data = WechatPlugin.getWxApi().sendReq(req);
         JSObject res = new JSObject();
         res.put("data", data);
         call.resolve(res);
@@ -137,7 +137,7 @@ public class WechatPlugin extends Plugin {
         req.transaction = buildTransaction("miniProgram");
         req.message = msg;
         req.scene = SendMessageToWX.Req.WXSceneSession;
-        boolean data = this.getWxApi().sendReq(req);
+        boolean data = WechatPlugin.getWxApi().sendReq(req);
         JSObject res = new JSObject();
         res.put("data", data);
         call.resolve(res);
@@ -153,7 +153,7 @@ public class WechatPlugin extends Plugin {
         req.transaction = buildTransaction("webpage");
         req.message =msg;
         req.scene = call.getInt("scene", SendMessageToWX.Req.WXSceneSession);
-        boolean data = this.getWxApi().sendReq(req);
+        boolean data = WechatPlugin.getWxApi().sendReq(req);
         JSObject res = new JSObject();
         res.put("data", data);
         call.resolve(res);
@@ -169,7 +169,7 @@ public class WechatPlugin extends Plugin {
         req.transaction = buildTransaction("video");
         req.message = msg;
         req.scene = call.getInt("scene", SendMessageToWX.Req.WXSceneSession);
-        boolean data = this.getWxApi().sendReq(req);
+        boolean data = WechatPlugin.getWxApi().sendReq(req);
         JSObject res = new JSObject();
         res.put("data", data);
         call.resolve(res);
@@ -197,26 +197,25 @@ public class WechatPlugin extends Plugin {
         req.transaction = buildTransaction("musicVideo");
         req.message = msg;
         req.scene = call.getInt("scene");
-        boolean data = this.getWxApi().sendReq(req);
+        boolean data = WechatPlugin.getWxApi().sendReq(req);
         JSObject res = new JSObject();
         res.put("data", data);
         call.resolve(res);
     }
     @PluginMethod
     public void openMiniProgram(PluginCall call) {
-        IWXAPI api = WXAPIFactory.createWXAPI(this.getContext(), this.APPID);
         WXLaunchMiniProgram.Req req = new WXLaunchMiniProgram.Req();
         req.userName = call.getString("userName");
         req.path = call.getString("path");
         req.miniprogramType = call.getInt("miniprogramType", WXMiniProgramObject.MINIPTOGRAM_TYPE_RELEASE);;
-        boolean data = this.getWxApi().sendReq(req);
+        boolean data = WechatPlugin.getWxApi().sendReq(req);
         JSObject res = new JSObject();
         res.put("data", data);
         call.resolve(res);
     }
     @PluginMethod
     public void openCustomerServiceResp(PluginCall call) {
-        IWXAPI api = this.getWxApi();
+        IWXAPI api = WechatPlugin.getWxApi();
         if (api.getWXAppSupportAPI() >= Build.SUPPORT_OPEN_CUSTOMER_SERVICE_CHAT) {
             WXOpenCustomerServiceChat.Req req = new WXOpenCustomerServiceChat.Req();
             req.corpId = call.getString("corpId");
@@ -233,7 +232,7 @@ public class WechatPlugin extends Plugin {
         SendAuth.Req req = new SendAuth.Req();
         req.scope = call.getString("scope", "snsapi_userinfo");
         req.state = call.getString("state");
-        this.getWxApi().sendReq(req);
+        WechatPlugin.getWxApi().sendReq(req);
         callbackId = call.getCallbackId();
         bridge.saveCall(call);
     }
